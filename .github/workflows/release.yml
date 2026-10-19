@@ -28,6 +28,11 @@ jobs:
         with:
           node-version: 22
 
+      # The backoffice shows this version under Settings > Packages, so keep it in step with the NuGet version
+      - name: Set package version
+        working-directory: src/Umbraco.Community.WhoIsHere/Client/public
+        run: jq --arg version "${{github.ref_name}}" '.version = $version' umbraco-package.json > umbraco-package.tmp && mv umbraco-package.tmp umbraco-package.json
+
       # Rebuild the backoffice client so the package never ships a stale copy of wwwroot
       - name: Build client
         working-directory: src/Umbraco.Community.WhoIsHere/Client

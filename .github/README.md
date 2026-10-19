@@ -2,7 +2,7 @@
 
 [![Downloads](https://img.shields.io/nuget/dt/Umbraco.Community.WhoIsHere?color=cc9900)](https://www.nuget.org/packages/Umbraco.Community.WhoIsHere/)
 [![NuGet](https://img.shields.io/nuget/vpre/Umbraco.Community.WhoIsHere?color=0273B3)](https://www.nuget.org/packages/Umbraco.Community.WhoIsHere)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../LICENSE)
 
 Shows, live on the document edit screen, which other backoffice users have the same document open. It is a soft lock: it warns, and it never blocks editing or saving.
 
@@ -10,6 +10,10 @@ Shows, live on the document edit screen, which other backoffice users have the s
 - The field each editor is in gets a chip in their colour under its label ("Jane Doe is here"). This works inside blocks too: the block list gets an outlined chip, "Jane Doe in Blog Articles › Page Size".
 - Everything updates in real time over SignalR.
 - If someone else saves the document while you have it open, you get a notice like "Saved by Jane at 11:42" with a Reload button.
+
+| Who else is editing | Field highlighting | Save notice |
+|---|---|---|
+| ![Avatars in the workspace footer, with a list of who else is editing and which field each is in](../docs/assets/screenshots/screenshot-01-footer.png) | ![A chip under the field another editor is in](../docs/assets/screenshots/screenshot-02-field.png) | ![A notice when someone else saves the document, with a Reload button](../docs/assets/screenshots/screenshot-03-save-alert.png) |
 
 Targets **Umbraco 18** (.NET 10).
 
@@ -121,20 +125,20 @@ A load-balanced setup needs two things:
 
 With a shared store, run the sweeper on a single server, or make `RemoveExpiredAsync` atomic in the store, so that expiry broadcasts aren't duplicated.
 
-The brief's optional Redis backplane is **not implemented**. A Redis client is a heavy dependency for a feature most sites won't use. It would sit better in a separate `Umbraco.Community.WhoIsHere.Redis` package that provides both the backplane registration and the store.
+A Redis backplane is **not included**. A Redis client is a heavy dependency for a feature most sites won't use. It would sit better in a separate `Umbraco.Community.WhoIsHere.Redis` package that provides both the backplane registration and the store.
 
 If you use Azure SignalR without sticky sessions, set Umbraco's `Umbraco:CMS:SignalR:ClientShouldSkipNegotiation`. WhoIsHere honours it the same way Umbraco's hubs do: WebSockets only, with negotiation skipped.
 
-## Decisions on the brief's open questions
+## Design decisions
 
 - **Hub path:** `/umbraco/whoishere-hub`. It has to live under `/umbraco/` because Umbraco's OpenIddict validation ignores requests outside that path. WhoIsHere registers its own hub (`MapHub` from an `UmbracoPipelineFilter`) rather than piggybacking on Umbraco's hubs. Those hubs have fixed contracts, and their internals (`IServerEventRouter`, user groups) are not designed for extension.
 - **Per-culture/variant presence:** v1 treats the document as a whole. A natural extension is to join `doc:{key}:{culture}` alongside the document group, so the indicator can show who is on which language.
-- **Field-level presence:** the brief had it out of scope for v1; it was added afterwards on request (see [Field highlighting](#field-highlighting)). It shows where people are, not what they are typing. There is still no co-editing or merging.
+- **Field-level presence:** see [Field highlighting](#field-highlighting). It shows where people are, not what they are typing. There is no co-editing or merging.
 - **Idle state (tab hidden):** not implemented. It would need a `visibilitychange` listener and an extra `idle` flag on `PresenceUser`. It would be easy to add, but it doubles the broadcast traffic for a nice-to-have.
 
-## Differences from the brief (verified against v18)
+## Notes on the Umbraco 18 APIs
 
-The brief targeted Umbraco 17, and this package was built for **18**. Everything below was checked against the installed `@umbraco-cms/backoffice` 18.2.1 typings and the 18.2.1 source:
+Everything below was checked against the `@umbraco-cms/backoffice` 18.2.1 typings and source:
 
 - **Auth is cookie-based.** The backoffice keeps its access token in an httpOnly cookie. `UMB_AUTH_CONTEXT.getLatestToken()` returns the placeholder `[redacted]`, and the server swaps it for the cookie's token. That placeholder is what goes into `accessTokenFactory`. There is no real token to send.
 - **SignalR is not a separate npm dependency.** The backoffice ships it as `@umbraco-cms/backoffice/external/signalr`, so the package reuses that copy instead of bundling `@microsoft/signalr`.
@@ -165,6 +169,6 @@ src/
 
 The layout follows the `umbraco-extension` template inside the community package-starter repository structure. See [CONTRIBUTING.md](CONTRIBUTING.md) for build and test commands.
 
-The release workflow (`.github/workflows/release.yml`) runs on a version tag such as `0.1.0`. It rebuilds the client, runs the tests, packs the package and pushes it to NuGet using the `NUGET_API_KEY` secret.
+The release workflow (`.github/workflows/release.yml`) runs on a version tag such as `0.1.0`. It rebuilds the client, runs the tests, packs the package and pushes it to NuGet using [trusted publishing](https://learn.microsoft.com/nuget/nuget-org/trusted-publishing), so no API key is stored in the repository.
 
 Tests use Microsoft.Testing.Platform, which the root `global.json` opts into because .NET 10 no longer runs xUnit v3 through VSTest.
