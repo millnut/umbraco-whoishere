@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       # The backoffice shows this version under Settings > Packages, so keep it in step with the NuGet version
       - name: Set package version
