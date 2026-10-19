@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <StaticWebAssetBasePath>/</StaticWebAssetBasePath>
+    <RootNamespace>Umbraco.Community.WhoIsHere</RootNamespace>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Audit hits come from the transitive packages of our minimum Umbraco version, which a site upgrades
+         by running a newer 18.x. Keep them visible, but don't let them fail the build. -->
+    <WarningsNotAsErrors>$(WarningsNotAsErrors);NU1901;NU1902;NU1903;NU1904</WarningsNotAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Public types are documented where it helps; don't fail the build over every member -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Product>Umbraco.Community.WhoIsHere</Product>
+    <PackageId>Umbraco.Community.WhoIsHere</PackageId>
+    <Title>WhoIsHere</Title>
+    <Description>Shows, live on the document edit screen, which other backoffice users have the same document open and which field they are in. A soft lock: it warns but never blocks.</Description>
+    <PackageTags>umbraco;umbraco-marketplace;presence;collaboration;backoffice</PackageTags>
+    <Authors>Lee Mills</Authors>
+    <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © Lee Mills</Copyright>
+    <PackageProjectUrl>https://github.com/millnut/umbraco-whoishere</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/millnut/umbraco-whoishere</RepositoryUrl>
+    <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Brings in Umbraco.Cms.Web.Common and Umbraco.Cms.Api.Common, which is everything the package uses -->
+    <PackageReference Include="Umbraco.Cms.Api.Management" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Dont include the client folder as part of packaging nuget build -->
+    <Content Remove="Client\**" />
+
+    <!-- However make the Umbraco-package.json included for dotnet pack or nuget package and visible to the solution -->
+    <None Include="Client\public\umbraco-package.json" Pack="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\README_nuget.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <InternalsVisibleTo Include="Umbraco.Community.WhoIsHere.Tests" />
+  </ItemGroup>
+
+</Project>

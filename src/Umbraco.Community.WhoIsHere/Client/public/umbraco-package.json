@@ -1,0 +1,14 @@
+{
+  "id": "Umbraco.Community.WhoIsHere",
+  "name": "WhoIsHere",
+  "version": "0.1.0",
+  "allowTelemetry": true,
+  "extensions": [
+    {
+      "type": "bundle",
+      "alias": "WhoIsHere.Bundle",
+      "name": "WhoIsHere Bundle",
+      "js": "/App_Plugins/WhoIsHere/whoishere.js"
+    }
+  ]
+}

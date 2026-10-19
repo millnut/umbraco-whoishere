@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="../.github/CONTRIBUTING.md" />
+    <File Path="../.github/README.md" />
+    <File Path="../docs/README_nuget.md" />
+    <File Path="../umbraco-marketplace.json" />
+  </Folder>
+  <Project Path="Umbraco.Community.WhoIsHere.TestSite/Umbraco.Community.WhoIsHere.TestSite.csproj" />
+  <Project Path="Umbraco.Community.WhoIsHere.Tests/Umbraco.Community.WhoIsHere.Tests.csproj" />
+  <Project Path="Umbraco.Community.WhoIsHere/Umbraco.Community.WhoIsHere.csproj" />
+</Solution>

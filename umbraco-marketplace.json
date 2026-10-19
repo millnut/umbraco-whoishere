@@ -1,0 +1,14 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "AuthorDetails": {
+    "Name": "Lee Mills",
+    "ImageUrl": "https://github.com/millnut.png"
+  },
+  "Category": "Editor Tools",
+  "Description": "See who else has a document open in the backoffice, and which field they are in. A soft lock: it warns, including when someone else saves, but never blocks editing or saving.",
+  "LicenseTypes": [ "Free" ],
+  "IssueTrackerUrl": "https://github.com/millnut/umbraco-whoishere/issues",
+  "PackageType": "Package",
+  "Tags": [ "presence", "collaboration", "backoffice", "editors" ],
+  "Title": "WhoIsHere"
+}
