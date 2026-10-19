@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>WhoIsHere package icon</title>
+  <desc>A document with three collaborator avatars and activity marks on an indigo rounded square.</desc>
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#373ca4"/>
+      <stop offset="1" stop-color="#292f91"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f8f9ff"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#168df0"/>
+      <stop offset="1" stop-color="#0873d8"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8540d4"/>
+      <stop offset="1" stop-color="#6530b8"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#27b68b"/>
+      <stop offset="1" stop-color="#159b75"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="#ffffff"/>
+  <rect x="116" y="116" width="792" height="792" rx="224" fill="url(#tile)"/>
+  <path d="M335 245 H592 L692 345 V660 Q692 701 651 701 H335 Z" fill="url(#paper)"/>
+  <path d="M592 245 V330 Q592 345 608 345 H692 Z" fill="#c7ccef"/>
+  <path d="M375 392 H623" stroke="#c4cbed" stroke-width="31" stroke-linecap="round"/>
+  <path d="M375 455 H582" stroke="#c4cbed" stroke-width="31" stroke-linecap="round"/>
+  <path d="M375 518 H477" stroke="#c4cbed" stroke-width="31" stroke-linecap="round"/>
+  <g fill="none" stroke="#ffbd43" stroke-width="27" stroke-linecap="round">
+    <path d="M729 344 L755 305"/>
+    <path d="M751 388 L806 368"/>
+    <path d="M751 432 L798 448"/>
+  </g>
+  <g stroke="#ffffff" stroke-width="8">
+    <circle cx="323" cy="661" r="91" fill="url(#blue)"/>
+    <circle cx="469" cy="661" r="91" fill="url(#purple)"/>
+    <circle cx="615" cy="661" r="91" fill="url(#green)"/>
+  </g>
+  <g fill="#ffffff">
+    <circle cx="323" cy="640" r="22"/>
+    <path d="M278 704 Q283 674 306 674 H340 Q363 674 368 704 Q368 711 360 711 H286 Q278 711 278 704 Z"/>
+    <circle cx="469" cy="640" r="22"/>
+    <path d="M424 704 Q429 674 452 674 H486 Q509 674 514 704 Q514 711 506 711 H432 Q424 711 424 704 Z"/>
+    <circle cx="615" cy="640" r="22"/>
+    <path d="M570 704 Q575 674 598 674 H632 Q655 674 660 704 Q660 711 652 711 H578 Q570 711 570 704 Z"/>
+  </g>
+</svg>
