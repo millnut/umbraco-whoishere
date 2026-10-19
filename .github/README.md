@@ -2,7 +2,7 @@
 
 [![Downloads](https://img.shields.io/nuget/dt/Umbraco.Community.WhoIsHere?color=cc9900)](https://www.nuget.org/packages/Umbraco.Community.WhoIsHere/)
 [![NuGet](https://img.shields.io/nuget/vpre/Umbraco.Community.WhoIsHere?color=0273B3)](https://www.nuget.org/packages/Umbraco.Community.WhoIsHere)
-[![GitHub license](https://img.shields.io/github/license/millnut/umbraco-whoishere?color=8AB803)](../LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Shows, live on the document edit screen, which other backoffice users have the same document open. It is a soft lock: it warns, and it never blocks editing or saving.
 

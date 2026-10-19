@@ -9,6 +9,20 @@
   "LicenseTypes": [ "Free" ],
   "IssueTrackerUrl": "https://github.com/millnut/umbraco-whoishere/issues",
   "PackageType": "Package",
+  "Screenshots": [
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/millnut/umbraco-whoishere/main/docs/assets/screenshots/screenshot-01-footer.png",
+      "Caption": "Avatars in the workspace footer, with a list of who else is editing and which field each is in"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/millnut/umbraco-whoishere/main/docs/assets/screenshots/screenshot-02-field.png",
+      "Caption": "A chip under the field another editor is in"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/millnut/umbraco-whoishere/main/docs/assets/screenshots/screenshot-03-save-alert.png",
+      "Caption": "A notice when someone else saves the document, with a Reload button"
+    }
+  ],
   "Tags": [ "presence", "collaboration", "backoffice", "editors" ],
   "Title": "WhoIsHere"
 }
